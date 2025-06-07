@@ -1,6 +1,6 @@
 # InkyPi 
 
-Fork of https://github.com/fatihak/InkyPi/ adding a TFL dashboard which fetchs arrival times for trains for a given station using their public API. Also uses the `wkhtmltoimage` (QT WebKit) and not Chromium (Blink) engine as it doesn't run on a Raspberry Pi 0W.
+Fork of https://github.com/fatihak/InkyPi/ adding a TFL dashboard which fetches arrival times for trains for a given station using their public API. Also uses the `wkhtmltoimage` (QT WebKit) and not Chromium (Blink) engine as it doesn't run on a Raspberry Pi 0W.
 
 ## Example
 <img src="./docs/images/front.jpg" width="500"/>
