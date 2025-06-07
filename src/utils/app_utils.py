@@ -29,6 +29,10 @@ FONT_FAMILIES = {
     "DS-Digital": [{
         "font-weight": "normal",
         "file": os.path.join("DS-DIGI", "DS-DIGI.TTF")
+    }],
+    "tflfont": [{
+        "font-weight": "normal",
+        "file": "tflfont.ttf"
     }]
 }
 
@@ -36,7 +40,8 @@ FONTS = {
     "ds-gigi": "DS-DIGI.TTF",
     "napoli": "Napoli.ttf",
     "jost": "Jost.ttf",
-    "jost-semibold": "Jost-SemiBold.ttf"
+    "jost-semibold": "Jost-SemiBold.ttf",
+    "tflfont": "tflfont.ttf"
 }
 
 def resolve_path(file_path):

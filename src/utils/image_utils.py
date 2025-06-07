@@ -107,14 +107,25 @@ def take_screenshot(target, dimensions, timeout_ms=None):
         with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as img_file:
             img_file_path = img_file.name
 
-        command = [
-            "chromium-headless-shell", target, "--headless",
-            f"--screenshot={img_file_path}", f'--window-size={dimensions[0]},{dimensions[1]}',
-            "--no-sandbox", "--disable-gpu", "--disable-software-rasterizer",
-            "--disable-dev-shm-usage", "--hide-scrollbars"
+        logger.critical(f"before screenshot")
+        # command = [
+        #     "chromium-headless-shell", target, "--headless",
+        #     f"--screenshot={img_file_path}", f'--window-size={dimensions[0]},{dimensions[1]}',
+        #     "--no-sandbox", "--disable-gpu", "--disable-software-rasterizer",
+        #     "--disable-dev-shm-usage", "--hide-scrollbars"
+        # ]
+        # if timeout_ms:
+            # command.append(f"--timeout={timeout_ms}")
+        command = ["wkhtmltoimage", 
+        "--width", f"{dimensions[0]}", 
+        "--height", f"{dimensions[1]}", 
+        "--images",  
+        "--enable-javascript",  
+        "--javascript-delay", "1000",  
+        "--enable-local-file-access", 
+        f"{target}",  
+        f"{img_file_path}"
         ]
-        if timeout_ms:
-            command.append(f"--timeout={timeout_ms}")
         result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         # Check if the process failed or the output file is missing

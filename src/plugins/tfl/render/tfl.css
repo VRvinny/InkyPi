@@ -1,0 +1,82 @@
+/* Basic Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  /* border: 1px solid green; */
+  padding: 0;
+  font-family: "tflfont";
+  font-size: 18pt;
+}
+
+.display {
+  display: flex;
+}
+
+.line-good {
+  border: 1px solid #000;
+  background-color: #50C878;
+}
+
+.line-meh {
+  border: 1px solid #000;
+  background-color: #ff0;
+}
+
+.line-bad {
+  border: 1px solid #000;
+  background-color: #f00;
+  color: #fff ;
+}
+.line {
+  white-space: nowrap;
+}
+
+.linestatus {
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+
+.arrivalsE {
+  display: flex;
+  align-items: top;
+  white-space: nowrap;
+  padding-left: 5px;
+}
+
+.arrivalsW {
+  display: flex;
+  align-items: top;
+  white-space: nowrap;
+  padding-left: 5px;
+}
+
+.destination{
+  text-align: left;
+  font-size: 14pt;
+}
+
+.eta {
+  text-align: right;
+  white-space: nowrap;
+  font-size: 26pt;
+}
+
+
+.date-table{
+  /* border: 1px solid green; */
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  bottom: 1em;
+  left: 10em;
+  right: 3em;
+}
+
+#date{
+  text-align: center;
+  color: #00343b;
+  /* border: 1px solid green; */
+  /* font-size: 25pt; */
+  
+}

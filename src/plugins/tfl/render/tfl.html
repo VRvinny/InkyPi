@@ -1,0 +1,118 @@
+{% extends "plugin.html" %}
+
+<html>
+
+<head>
+    Status
+    <link rel="stylesheet" href="tfl.css">
+</head>
+
+<body>
+    {% block content %}
+    <div class="display">
+        <table class="supertable">
+            <tr>
+                <td>
+                    <div class="linestatus">
+                        <table class="line">
+                            {% for lines in statuses %}
+                            <tr>
+                                <th id="{{lines[0]}}">{{ lines[0] }} </th>
+
+                                {% if lines[2] == "Good Service" %}
+                                <th class="line-good">{{ lines[2] }}</th>
+                                {% elif lines[2] == "Minor Delays"%}
+                                <th class="line-meh">{{ lines[2] }}</th>
+                                {% elif lines[2] == "Reduced Service"%}
+                                <th class="line-bad">{{ lines[2] }}</th>
+                                {% elif lines[2] == "Part Closure"%}
+                                <th class="line-bad">{{ lines[2] }}</th>
+                                {% elif lines[2] == "Suspended"%}
+                                <th class="line-bad">{{ lines[2] }}</th>
+                                {% elif lines[2] == "Part suspended"%}
+                                <th class="line-bad">{{ lines[2] }}</th>
+                                {% elif lines[2] == "Severe Delays"%}
+                                <th class="line-bad">{{ lines[2] }}</th>
+                                {%endif%}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </td>
+                <td>
+                    <div class="arrivalsE">
+                        <table class="table-arrivalsE">
+                            {% for arrival in arrivalE %}
+                            <tr>
+                                <th class="destination"> {{arrival[0]}} </th>
+                                <th class="eta"> {{arrival[4]}} min{% if arrival[4] > 1 -%}s{% endif %}</th>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </td>
+                <td>
+                    <div class="arrivalsW">
+                        <table class="table-arrivalsW">
+                            {% for arrival in arrivalW %}
+                            <tr>
+                                <th class="destination"> {{arrival[0]}} </th>
+                                <b>
+                                    <th class="eta"> {{arrival[4]}} min{% if arrival[4] > 1 -%}s{% endif %}</th>
+                                </b>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <br>
+    <table class="date-table">
+        <tr>
+            <td>
+                <b id="date">AAA</b>
+                <script> document.getElementById("date").innerHTML = Date().split(" ").slice(0, 5).join(" "); document.getElementById("date").style.fontSize = "30pt"; </script>
+            </td>
+        </tr>
+    </table>
+    <script>
+        var testcolor = {
+            'Bakerloo': '#B36305',
+            'Central': '#E32017',
+            'Circle': '#FFD300',
+            'District': '#00782A',
+            'Elizabeth line': '#6950a1',
+            'Hammersmith & City': '#F3A9BB',
+            'Jubilee': '#A0A5A9',
+            'Metropolitan': '#9B0056',
+            'Northern': '#000000',
+            'Piccadilly': '#003688',
+            'Victoria': '#00A3E0',
+            'Waterloo & City': '#95CDBA',
+            'DLR': '#00A4A7',
+            'London Overground': '#EE7C0E',
+            'London Trams': '#84B817',
+            'Emirates Cable Car': '#E21836'
+        }
+        function invertColor(color) {
+            return '#' + ("000000" + (0xFFFFFF ^ parseInt(color.substring(1), 16)).toString(16)).slice(-6);
+        }
+        // Function to set the color of table cells
+        function setCellColors() {
+            for (var cellId in testcolor) {
+                var cell = document.getElementById(cellId);
+                if (cell) {
+                    cell.style.backgroundColor = testcolor[cellId];
+                    cell.style.color = invertColor(testcolor[cellId]);
+                }
+            }
+        }
+        setCellColors();
+    </script>
+    {% endblock %}
+</body>
+
+</html>
